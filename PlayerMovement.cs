@@ -17,6 +17,14 @@ public class PlayerMovement : MonoBehaviour
     bool jump;
     [SerializeField]
     private float Speed;
+
+    [SerializeField]
+    Animator animator;
+
+    [SerializeField]
+    AskQuestion askQuestion;
+
+    private float timeStopped;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +35,18 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Jump();
+        if (rb.velocity.x < Speed * 0.1f)
+        {
+            timeStopped += Time.deltaTime;
+            if(timeStopped >= 1)
+            {
+                AskQuestion();
+            }
+        }
+        else
+        {
+            timeStopped = 0;
+        }
     }
     private void Awake()
     {
@@ -36,15 +56,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jump) {
             rb.AddForce(new Vector2(0, jumpForce));
+            animator.SetBool("grounded", false);
             jumps++;
             jump = false;
         }
 
+        if (rb.velocity.x < Speed * 0.1f)
+            Debug.Log("Stopped");
         rb.velocity = new Vector2(Speed, rb.velocity.y);
 
-        if(transform.position.y < -20)
+        if(transform.position.y < -30)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            AskQuestion();
         }
     }
 
@@ -57,6 +80,13 @@ public class PlayerMovement : MonoBehaviour
         } else if (Physics2D.OverlapCircle(FloorCheck.position, 0.1f,Ground) != null && !jump)
         {
             jumps = 0;
+            animator.SetBool("grounded", true);
         }
+    }
+
+    private void AskQuestion()
+    {
+        Time.timeScale = 0;
+        askQuestion.AskNewQuestion();
     }
 }
