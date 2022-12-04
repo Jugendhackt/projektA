@@ -14,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private Transform FloorCheck;
     [SerializeField]
     private LayerMask Ground;
-    bool jump;
+    bool shouldJump;
+    bool isJumping;
     [SerializeField]
     private float Speed;
 
@@ -25,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     AskQuestion askQuestion;
 
     private float timeStopped;
+
+    bool question;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
             timeStopped += Time.deltaTime;
             if(timeStopped >= 1)
             {
+                timeStopped = 0;
                 AskQuestion();
             }
         }
@@ -54,11 +58,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (jump) {
+        if (shouldJump) {
             rb.AddForce(new Vector2(0, jumpForce));
             animator.SetBool("grounded", false);
             jumps++;
-            jump = false;
+            shouldJump = false;
+            isJumping = true;
         }
 
         if (rb.velocity.x < Speed * 0.1f)
@@ -73,20 +78,40 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumps < 2 && !jump) {
+        if (Input.GetKeyDown(KeyCode.Space) && jumps < 2 && !shouldJump) {
             Debug.Log("Jump");
-            jump = true;
+            shouldJump = true;
 
-        } else if (Physics2D.OverlapCircle(FloorCheck.position, 0.1f,Ground) != null && !jump)
+        } else if (isJumping && !shouldJump && Physics2D.OverlapCircle(FloorCheck.position, 0.1f, Ground) != null)
         {
             jumps = 0;
             animator.SetBool("grounded", true);
+            isJumping = false;
         }
     }
 
     private void AskQuestion()
     {
+        if (question)
+            return;
+
         Time.timeScale = 0;
         askQuestion.AskNewQuestion();
+        question = true;
+    }
+
+    public void Respawn()
+    {
+        Debug.Log("Respawn");
+        Time.timeScale = 1;
+        Debug.Log(transform.position + "; " + Mathf.FloorToInt(transform.position.x / 32f));
+        transform.position = new Vector2(Mathf.FloorToInt(transform.position.x / 32f)*32, 18);
+        question =false;
+    }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        question = false;
     }
 }
