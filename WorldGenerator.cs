@@ -84,12 +84,23 @@ public class WorldGenerator : MonoBehaviour
     public void SpawnChunk(int xOff, int yOff, int template)
     {
         Texture2D currentTemplate = templates[template].texture;
+        if (xOff == 0 || xOff == -32)
+            currentTemplate = null;
         for(int x = 0; x < 32; x++)
         {
             for(int y = 0; y < 32; y++)
             {
-                if (currentTemplate.GetPixel(x, y).a < 1)
-                    continue;
+                if (currentTemplate == null)
+                {
+                    if (y != 14)
+                        continue;
+
+
+                } else
+                {
+                    if (currentTemplate.GetPixel(x, y).a < 1)
+                        continue;
+                }
 
                 /*int i = 0;
                 if(x+1 < 16 && currentTemplate.GetPixel(x+1,y).a > 0)
