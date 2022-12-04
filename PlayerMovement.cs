@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private LayerMask Ground;
     bool shouldJump;
-    bool isJumping;
     [SerializeField]
     private float Speed;
 
@@ -28,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private float timeStopped;
 
     bool question;
+    bool grounded;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,12 +58,22 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (Physics2D.OverlapCircle(FloorCheck.position, 0.1f, Ground) != null)
+        {
+            jumps = 0;
+            animator.SetBool("grounded", true);
+            grounded = true;
+        } else if(grounded)
+        {
+            animator.SetBool("grouded", false);
+            grounded = false;
+        }
         if (shouldJump) {
             rb.AddForce(new Vector2(0, jumpForce));
             animator.SetBool("grounded", false);
+            grounded = false;
             jumps++;
             shouldJump = false;
-            isJumping = true;
         }
 
         if (rb.velocity.x < Speed * 0.1f)
@@ -78,15 +88,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumps < 2 && !shouldJump) {
-            Debug.Log("Jump");
-            shouldJump = true;
-
-        } else if (isJumping && !shouldJump && Physics2D.OverlapCircle(FloorCheck.position, 0.1f, Ground) != null)
-        {
-            jumps = 0;
-            animator.SetBool("grounded", true);
-            isJumping = false;
+        if (Input.GetKeyDown(KeyCode.Space) && !shouldJump) {
+            if(jumps >= 2)
+            {
+                if (Physics2D.OverlapCircle(FloorCheck.position, 0.1f, Ground) != null)
+                {
+                    jumps = 0;
+                    animator.SetBool("grounded", true);
+                    grounded = true;
+                }
+            }
+            if(jumps < 2)
+            {
+                shouldJump = true;
+            }
         }
     }
 
