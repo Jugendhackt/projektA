@@ -849,7 +849,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1445,8 +1445,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0m
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2aaa02f692cc2a44d8dcfee97722f3d6, type: 2}
+  m_sharedMaterial: {fileID: 5065679419632851758, guid: 2aaa02f692cc2a44d8dcfee97722f3d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1762,8 +1762,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 70, y: -70}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 50, y: -50}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &973638988
 MonoBehaviour:
@@ -2426,24 +2426,24 @@ PrefabInstance:
       objectReference: {fileID: 1204983300}
     - target: {fileID: 3913931955070304027, guid: db79f8c5f38e1644e930a8939d10b70f, type: 3}
       propertyPath: templates.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3913931955070304027, guid: db79f8c5f38e1644e930a8939d10b70f, type: 3}
       propertyPath: templates.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: 78c51022711f5a14ab5ba4704b88ecd5, type: 3}
+      objectReference: {fileID: 21300000, guid: 51caf4bb435e1af4cac5c2d633e1e9ff, type: 3}
     - target: {fileID: 3913931955070304027, guid: db79f8c5f38e1644e930a8939d10b70f, type: 3}
       propertyPath: templates.Array.data[4]
       value: 
-      objectReference: {fileID: 21300000, guid: 2e2fd14acd6e72f489649cbc453b9250, type: 3}
+      objectReference: {fileID: 21300000, guid: 78c51022711f5a14ab5ba4704b88ecd5, type: 3}
     - target: {fileID: 3913931955070304027, guid: db79f8c5f38e1644e930a8939d10b70f, type: 3}
       propertyPath: templates.Array.data[5]
       value: 
-      objectReference: {fileID: 21300000, guid: b2544df07be015946b5e30dbab1b7ec0, type: 3}
+      objectReference: {fileID: 21300000, guid: f2a2273de047fc544bb7cef432e6f640, type: 3}
     - target: {fileID: 3913931955070304027, guid: db79f8c5f38e1644e930a8939d10b70f, type: 3}
       propertyPath: templates.Array.data[6]
       value: 
-      objectReference: {fileID: 21300000, guid: b2544df07be015946b5e30dbab1b7ec0, type: 3}
+      objectReference: {fileID: 21300000, guid: 2e2fd14acd6e72f489649cbc453b9250, type: 3}
     - target: {fileID: 3913931955070304028, guid: db79f8c5f38e1644e930a8939d10b70f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3647,7 +3647,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 90}
-  m_SizeDelta: {x: -40, y: -220}
+  m_SizeDelta: {x: -180, y: -220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2131097107
 MonoBehaviour:

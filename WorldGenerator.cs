@@ -91,7 +91,7 @@ public class WorldGenerator : MonoBehaviour
                 if (currentTemplate.GetPixel(x, y).a < 1)
                     continue;
 
-                int i = 0;
+                /*int i = 0;
                 if(x+1 < 16 && currentTemplate.GetPixel(x+1,y).a > 0)
                 {
                     i |= 1 << 0;
@@ -107,8 +107,8 @@ public class WorldGenerator : MonoBehaviour
                 if (y+1<16 && currentTemplate.GetPixel(x, y+1).a > 0)
                 {
                     i |= 1 << 3;
-                }
-                SpawnTile(x+xOff, y+yOff, i);
+                }*/
+                SpawnTile(x+xOff, y+yOff,15);
             }
         }
     }

@@ -28,12 +28,6 @@ public class PlayerMovement : MonoBehaviour
 
     bool question;
     bool grounded;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -52,10 +46,6 @@ public class PlayerMovement : MonoBehaviour
             timeStopped = 0;
         }
     }
-    private void Awake()
-    {
-
-    }
     private void FixedUpdate()
     {
         if (Physics2D.OverlapCircle(FloorCheck.position, 0.1f, Ground) != null)
@@ -65,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
             grounded = true;
         } else if(grounded)
         {
-            animator.SetBool("grouded", false);
+            animator.SetBool("grounded", false);
             grounded = false;
         }
         if (shouldJump) {
@@ -89,14 +79,11 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && !shouldJump) {
-            if(jumps >= 2)
+            if(jumps >= 2 && Physics2D.OverlapCircle(FloorCheck.position, 0.1f, Ground) != null)
             {
-                if (Physics2D.OverlapCircle(FloorCheck.position, 0.1f, Ground) != null)
-                {
-                    jumps = 0;
-                    animator.SetBool("grounded", true);
-                    grounded = true;
-                }
+                jumps = 0;
+                animator.SetBool("grounded", true);
+                grounded = true;
             }
             if(jumps < 2)
             {
