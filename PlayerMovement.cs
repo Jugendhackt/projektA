@@ -107,15 +107,6 @@ public class PlayerMovement : MonoBehaviour
         question = true;
     }
 
-    public void Respawn()
-    {
-        Debug.Log("Respawn");
-        Freeze(false);
-        Debug.Log(transform.position + "; " + Mathf.FloorToInt(transform.position.x / 32f));
-        transform.position = new Vector2(Mathf.FloorToInt(transform.position.x / 32f)*32, 18);
-        question =false;
-    }
-
     public void ReloadLevel()
     {
         Freeze(false);
@@ -133,5 +124,16 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
+    }
+
+    public IEnumerator Respawn()
+    {
+        Debug.Log("Respawn");
+        Debug.Log(transform.position + "; " + Mathf.FloorToInt(transform.position.x / 32f));
+        transform.position = new Vector2(Mathf.FloorToInt(transform.position.x / 32f) * 32, 18);
+        timeStopped = 0;
+        yield return new WaitForSeconds(0.5f);
+        Freeze(false);
+        question = false;
     }
 }

@@ -57,7 +57,7 @@ public class AskQuestion : MonoBehaviour
         canvasGroup.blocksRaycasts = false;
         if(answer == question.isTrue)
         {
-            player.Respawn();
+            StartCoroutine(player.Respawn());
         }
         else
         {
