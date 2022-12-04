@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     bool shouldJump;
     [SerializeField]
     private float Speed;
+    private float accel = 0.008f;
+    private float startSpeed = 6f;
 
     [SerializeField]
     Animator animator;
@@ -74,6 +76,9 @@ public class PlayerMovement : MonoBehaviour
         {
             AskQuestion();
         }
+        
+        Speed = transform.position.x * accel + startSpeed; 
+
     }
 
     private void Jump()
