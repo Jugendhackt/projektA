@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         if (question)
             return;
 
-        Time.timeScale = 0;
+        Freeze(true);
         askQuestion.AskNewQuestion();
         question = true;
     }
@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
     public void Respawn()
     {
         Debug.Log("Respawn");
-        Time.timeScale = 1;
+        Freeze(false);
         Debug.Log(transform.position + "; " + Mathf.FloorToInt(transform.position.x / 32f));
         transform.position = new Vector2(Mathf.FloorToInt(transform.position.x / 32f)*32, 18);
         question =false;
@@ -111,7 +111,20 @@ public class PlayerMovement : MonoBehaviour
 
     public void ReloadLevel()
     {
+        Freeze(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         question = false;
+    }
+
+    public void Freeze(bool value)
+    {
+        if (value)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 }

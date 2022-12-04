@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class AskQuestion : MonoBehaviour
 {
@@ -19,6 +20,22 @@ public class AskQuestion : MonoBehaviour
     [SerializeField]
     PlayerMovement player;
 
+    [SerializeField]
+    Slider clock;
+
+    private void Update()
+    {
+        if(canvasGroup.alpha > 0)
+        {
+            clock.value += (Time.deltaTime / 5f);
+            Debug.Log(Time.deltaTime);
+            if(clock.value >= 1)
+            {
+                player.ReloadLevel();
+            }
+        }
+    }
+
     public void AskNewQuestion()
     {
         if (canvasGroup.alpha > 0)
@@ -27,6 +44,7 @@ public class AskQuestion : MonoBehaviour
         canvasGroup.alpha = 1;
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
+        clock.value = 0;
 
         question = questions[Random.Range(0, questions.Length)];
         text.text = question.question;
@@ -37,7 +55,6 @@ public class AskQuestion : MonoBehaviour
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
-        Time.timeScale = 1;
         if(answer == question.isTrue)
         {
             player.Respawn();
