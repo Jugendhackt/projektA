@@ -1091,6 +1091,7 @@ GameObject:
   - component: {fileID: 590020807}
   - component: {fileID: 590020806}
   - component: {fileID: 590020808}
+  - component: {fileID: 590020809}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1175,14 +1176,153 @@ MonoBehaviour:
   canvasGroup: {fileID: 636738711}
   text: {fileID: 2131097107}
   questions:
-  - question: Kann man aus Elefantenkacke Papier machen?
+  - question: Aus Elefantenkacke kann man Papier herstellen
     isTrue: 1
-  - question: Gibt es die Augenfarbe lila?
+  - question: Es gibt die Augenfarbe lila
     isTrue: 0
-  - question: Werden Hundekuchen aus Hunden hergestellt?
+  - question: Wahr oder Falsch?
+    isTrue: 1
+  - question: Marvels "Avengers Endgame" ist der an den Kinokassen finanziell erfolgreichste
+      Film aller zeiten.
     isTrue: 0
+  - question: "Der englische Ausdruck \"public viewing\" bezeichnet das gemeinsame
+      Fu\xDFballschauen"
+    isTrue: 0
+  - question: X ist der 24. Buchstabe im Alphabet
+    isTrue: 1
+  - question: 5+5*5=50
+    isTrue: 0
+  - question: (5+5)*5=50
+    isTrue: 1
+  - question: "Magens\xE4ure ist chemisch gesehen HCl"
+    isTrue: 1
+  - question: "HDMI-Kabel \xFCbertragen nur Bilder"
+    isTrue: 0
+  - question: "Kaiser Augustus war der dritte Kaiser des r\xF6mischen Reichs"
+    isTrue: 0
+  - question: Cola enthielt einst Kokain
+    isTrue: 1
+  - question: "Der Mensch ist w\xE4ssriger als eine Gurke"
+    isTrue: 0
+  - question: HO2 wird in der Alltagssprache auch Wasser genannt
+    isTrue: 0
+  - question: Der 2. Weltkrieg ging am 8. Mai 1945 zuende
+    isTrue: 1
+  - question: "Joe Biden ist der 49. Pr\xE4sident der vereinigten Staaten von Amerika"
+    isTrue: 0
+  - question: Eine Googol hat 100 Stellen
+    isTrue: 0
+  - question: "Kartoffeln kommen ursrp\xFCnglich aus Deutschland"
+    isTrue: 0
+  - question: "Alpakas geh\xF6ren zu den Kamelen"
+    isTrue: 1
+  - question: "Alpakas k\xF6nnen \xFCber 4m weit spucken"
+    isTrue: 1
+  - question: "Pythagoras war Anf\xFChrer einer Sekte"
+    isTrue: 1
+  - question: '# ist in der Musik das Kreuzvorzeichen'
+    isTrue: 1
   player: {fileID: 1321025597}
   clock: {fileID: 973638988}
+  tickTock: {fileID: 590020809}
+  correct: {fileID: 8300000, guid: 5b1616743bf48ac4e8c3c95348b0c9d2, type: 3}
+  wrong: {fileID: 8300000, guid: 71230a0c59560114ba1519742da40d7f, type: 3}
+--- !u!82 &590020809
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590020804}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 97acd964962d8fb47aed6127de467cee, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &617600951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2424,6 +2564,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1204983300}
+    - target: {fileID: 3913931955070304027, guid: db79f8c5f38e1644e930a8939d10b70f, type: 3}
+      propertyPath: checkpointFlag
+      value: 
+      objectReference: {fileID: 6665746974329511917, guid: ddffd6f1c5483ed429b65f6a08e9410f, type: 3}
     - target: {fileID: 3913931955070304027, guid: db79f8c5f38e1644e930a8939d10b70f, type: 3}
       propertyPath: templates.Array.size
       value: 8
@@ -3754,6 +3898,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 829768399710784913, guid: 1156b169c7b82d44dbc6ccfd643c8af8, type: 3}
+      propertyPath: jump
+      value: 
+      objectReference: {fileID: 8300000, guid: e139b4a113ea11d4994c7b2fd828779d, type: 3}
     - target: {fileID: 829768399710784913, guid: 1156b169c7b82d44dbc6ccfd643c8af8, type: 3}
       propertyPath: askQuestion
       value: 

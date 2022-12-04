@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     AskQuestion askQuestion;
 
+    [SerializeField]
+    AudioClip jump;
+
     private float timeStopped;
 
     bool question;
@@ -64,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(new Vector2(0, jumpForce));
             animator.SetBool("grounded", false);
             grounded = false;
+            AudioSource.PlayClipAtPoint(jump, transform.position);
             jumps++;
             shouldJump = false;
         }
@@ -83,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !shouldJump) {
+        if ((Input.GetKeyDown(KeyCode.Space) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)) && !shouldJump) {
             if(jumps >= 2 && Physics2D.OverlapCircle(FloorCheck.position, 0.1f, Ground) != null)
             {
                 jumps = 0;
@@ -107,8 +111,9 @@ public class PlayerMovement : MonoBehaviour
         question = true;
     }
 
-    public void ReloadLevel()
+    public IEnumerator ReloadLevel()
     {
+        yield return new WaitForSeconds(3f);
         Freeze(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         question = false;

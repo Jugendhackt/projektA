@@ -23,6 +23,12 @@ public class AskQuestion : MonoBehaviour
     [SerializeField]
     Slider clock;
 
+    [SerializeField]
+    AudioSource tickTock;
+
+    [SerializeField]
+    AudioClip correct, wrong;
+
     private void Update()
     {
         if(canvasGroup.alpha > 0)
@@ -48,20 +54,24 @@ public class AskQuestion : MonoBehaviour
 
         question = questions[Random.Range(0, questions.Length)];
         text.text = question.question;
+        tickTock.Play();
     }
 
     public void AnswerQuestion(bool answer)
     {
+        tickTock.Stop();
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
         if(answer == question.isTrue)
         {
+            AudioSource.PlayClipAtPoint(correct, player.transform.position);
             StartCoroutine(player.Respawn());
         }
         else
         {
-            player.ReloadLevel();
+            AudioSource.PlayClipAtPoint(wrong, player.transform.position);
+            StartCoroutine(player.ReloadLevel());
         }
     }
 }

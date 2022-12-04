@@ -19,12 +19,18 @@ public class WorldGenerator : MonoBehaviour
 
     [SerializeField]
     Transform player;
+
+    [SerializeField]
+    Transform checkpointFlag;
+
+    List<Transform> flags;
     // Start is called before the first frame update
     private void Awake()
     {
         loadChunks = new List<int>();
         lastChunk = int.MaxValue;
         randomOffset = Random.Range(-9999,9999);
+        flags = new List<Transform>();
     }
 
     void Start()
@@ -86,6 +92,10 @@ public class WorldGenerator : MonoBehaviour
         Texture2D currentTemplate = templates[template].texture;
         if (xOff == 0 || xOff == -32)
             currentTemplate = null;
+        else
+        {
+            flags.Add(Instantiate(checkpointFlag, new Vector2(xOff+0.5f, yOff + 16.5f), Quaternion.identity, null));
+        }
         for(int x = 0; x < 32; x++)
         {
             for(int y = 0; y < 32; y++)
@@ -135,7 +145,8 @@ public class WorldGenerator : MonoBehaviour
     {
         /*if (tilemap.GetTile(new Vector3Int(x, y)) == null)
             return;*/
-
+        Destroy(flags[0].gameObject);
+        flags.RemoveAt(0);
         for(int x = 0; x < 32; x++)
         {
             for(int y =0; y < 32; y++)
